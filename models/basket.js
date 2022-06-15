@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 const basketSchema = new Schema({
     title: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     description: {
         type: String,
@@ -18,8 +17,20 @@ const basketSchema = new Schema({
     price: {
         type: String,
         required: true
-    }  
-});
+    },
+    author: {
+        type: String,
+        required: true
+    }
+    // author:  {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     required: 'User'
+    }
+//     {collection:'Basket',
+// versionKey: false //here
+// }
+    );
+
 
 var Basket = mongoose.model('Basket', basketSchema);
 

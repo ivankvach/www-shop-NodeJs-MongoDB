@@ -23,6 +23,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('./cors');
+const authenticate = require('../authenticate');
 
 const Products = require('../models/products');
 
@@ -39,9 +40,10 @@ productsRouter.route('/')
         res.setHeader('Content-Type', 'application/json');
         res.json(products);
         console.log(req.body);
+        console.log(req.headers);
     }, (err) => next(err))
     .catch((err) => next(err));
-})
+  })
 .post(cors.corsWithOptions, (req, res, next) => {
   Products.create(req.body)
   .then((product) => {
