@@ -94,6 +94,16 @@ router.get('/logout', cors.corsWithOptions, (req, res) => {
   }
 });
 
+router.delete('/:dishId', cors.corsWithOptions, (req, res, next) => {
+    User.findByIdAndRemove(req.params.dishId)
+    .then((resp) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(resp);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+});
+
 router.get('/checkJWTToken', cors.corsWithOptions, (req, res) => {
   passport.authenticate('jwt', {session: false}, (err, user, info) => {
     if (err)
